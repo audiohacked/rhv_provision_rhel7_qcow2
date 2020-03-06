@@ -1,0 +1,39 @@
+---
+- name: Create VM
+  delegate_to: localhost
+  ovirt_vm:
+    auth: "{{ ovirt_auth }}"
+    cluster: "{{ cluster }}"
+    storage_domain: "{{ storage_domain }}"
+    type: "server"
+    operating_system: "{{ vm.os }}"
+    name: "{{ vm.name }}"
+    cpu_cores: "{{ vm.cpus }}"
+    cpu_sockets: "{{ vm.sockets }}"
+    memory: "{{ vm.memory }}"
+    disks:
+      - name: "{{ vm.disk[0].name }}"
+        interface: virtio
+        activate: yes
+        bootable: yes
+    nics:
+      - name: nic1
+        interface: virtio
+        profile_name: ovirtmgmt
+    # next_run: yes
+    cloud_init_persist: yes
+    cloud_init:
+      host_name: "{{ vm.hostname }}"
+      user_name: "{{ cloud_init_user }}"
+      root_password: "{{ cloud_init_password }}"
+      dns_search: "{{ vm.network[0].ipv4.dns_search | join(' ') | quote }}"
+      dns_servers: "{{ vm.network[0].ipv4.dns | join(' ') | quote }}"
+    cloud_init_nics:
+      - nic_name: "{{ vm.network[0].ifname }}"
+        nic_boot_protocol: "{{ vm.network[0].ipv4.method }}"  # static
+        nic_ip_address: "{{ vm.network[0].ipv4.address }}"
+        nic_netmask: "{{ vm.network[0].ipv4.netmask }}"
+        nic_gateway: "{{ vm.network[0].ipv4.gw }}"
+        nic_on_boot: yes
+    state: present
+    wait: yes

@@ -1,0 +1,7 @@
+---
+- name: Delete failed VM
+  delegate_to: localhost
+  ovirt_vm:
+    auth: "{{ ovirt_auth }}"
+    name: "{{ vm.name | default(inventory_hostname) }}"
+    state: absent

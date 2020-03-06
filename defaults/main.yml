@@ -1,0 +1,40 @@
+---
+# defaults file for rhv_rhel7_qcow2_provision
+datacenter: Default
+cluster: Default
+storage_domain: CHANGEME
+vm_template: Blank
+# vm:
+#   type: server
+#   os: rhel_7x64
+#   name: "{{ inventory_hostname }}"
+#   hostname: "{{ inventory_hostname }}"
+#   cpus: 2
+#   sockets: 1
+#   memory: 8GiB
+#   disk:
+#     - name: "{{ inventory_hostname.split('.')[0] }}_{{ inventory_hostname.split('.')[1] }}_disk"
+#       size: 60GiB
+#   network:
+#     - conn_name: eth0
+#       ifname: eth0
+#       ipv4:
+#         method: static 
+#         address: 10.100.0.21
+#         netmask: 255.255.0.0
+#         gw: 10.100.0.1
+#         dns:
+#           - 10.0.0.9
+#           - 10.100.0.20
+#           - 10.100.0.40
+#         dns_search:
+#           - hkn.lab
+
+rhv_rhel7_qcow2_network_packages:
+  - NetworkManager-glib
+  - nm-connection-editor
+  - libsemanage-python
+  - policycoreutils-python
+
+rhv_rhel7_qcow2_image_path: /home/snelson/Documents/DiskImages/rhel-server-7.7-x86_64-kvm.qcow2
+

@@ -1,0 +1,7 @@
+---
+# handlers file for rhv_qcow2_provision
+- name: reboot
+  # reboot:
+  #   reboot_timeout: 600
+  fail:
+      msg: 'We should not be rebooting as per Best Practices'

@@ -1,0 +1,13 @@
+---
+- name: Resize and Attach Disk
+  delegate_to: localhost
+  ovirt_disk:
+    auth: "{{ ovirt_auth }}"
+    vm_name: "{{ vm.name }}"
+    name: "{{ vm.disk[0].name }}"
+    size: "{{ vm.disk[0].size }}"
+    interface: virtio
+    activate: yes
+    bootable: yes
+    state: attached
+    wait: true

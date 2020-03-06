@@ -1,0 +1,13 @@
+---
+- name: Login to RHV
+  delegate_to: localhost
+  run_once: true
+  ovirt_auth:
+    hostname: "{{ rhv_engine }}"
+    username: "{{ rhv_login_user | default('admin@internal') }}"
+    password: "{{ rhv_login_passwd }}"
+    insecure: true
+  tags:
+    - always
+    - login
+  when: ovirt_auth is not defined

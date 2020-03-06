@@ -1,0 +1,19 @@
+---
+# tasks file for rhv_rhel7_qcow2_provision
+- name: Provision VM Networking
+  delegate_to: "{{ inventory_hostname }}"
+  block:
+    - include_tasks: rhsm/resolv.yml
+
+    - name: Register VM to subscription
+      include_role:
+        name: oasis_roles.rhsm
+
+    - when: vm.network[0].ip4.method == static
+      include_tasks: network/nm_libs.yml
+
+    - when: vm.network[0].ip4.method == static
+      include_tasks: network/static.yml
+
+    - when: vm.network[0].ip4.method == static
+      include_tasks: network/cloud_init.yml

@@ -1,0 +1,17 @@
+---
+- name: Re-configure Static Networking
+  nmcli:
+    conn_name: "{{ vm.network[0].conn_name }}"
+    ifname: "{{ vm.network[0].ifname }}"
+    type: ethernet
+    ipv4: "{{ vm.network[0].ipv4.address }}/{{ vm.network[0].ipv4.netmask | ipaddr('prefix') }}"
+    gw4: "{{ vm.network[0].ipv4.gw }}"
+    dns4: "{{ vm.network[0].ipv4.dns }}"
+    dns4_search: "{{ vm.network[0].ipv4.dns_search }}"
+    state: present
+  notify: reboot
+
+- name: Ensure connection profile is static
+  command: nmcli con modify eth0 ipv4.method manual
+  changed_when: true
+  ignore_errors: yes

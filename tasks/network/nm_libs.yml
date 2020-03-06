@@ -1,0 +1,6 @@
+---
+- name: install needed network manager libs
+  package:
+    name: "{{ rhv_rhel7_qcow2_network_packages }}"
+    state: present
+  when: install_nm_libs or install_nm_libs is not defined

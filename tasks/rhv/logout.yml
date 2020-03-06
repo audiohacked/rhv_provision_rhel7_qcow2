@@ -1,0 +1,10 @@
+---
+- name: Logout of RHV
+  delegate_to: localhost
+  run_once: true
+  ovirt_auth:
+    ovirt_auth: "{{ ovirt_auth }}"
+    state: absent
+  tags:
+    - always
+    - logout
