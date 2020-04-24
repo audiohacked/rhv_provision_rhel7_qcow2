@@ -4,26 +4,15 @@
 
 - name: Generate new VM
   delegate_to: localhost
+  # delegate_facts: yes
   block:
     - include_tasks: disk/upload.yml
 
     - include_tasks: machine/create.yml
 
-    - name: Pause for VM Creation
-      pause:
-        seconds: 10
-
     - include_tasks: disk/resize.yml
 
-    - name: Pause for Disk Resize
-      pause:
-        seconds: 10
-
     - include_tasks: machine/start.yml
-
-    - name: Wait for VM Start
-      pause:
-        seconds: 10
 
   rescue:
     - include_tasks: machine/delete.yml
@@ -31,4 +20,4 @@
   always:
     - include_tasks: rhv/logout.yml
 
-#- include_tasks: network.yml
+# - include_tasks: network.yml

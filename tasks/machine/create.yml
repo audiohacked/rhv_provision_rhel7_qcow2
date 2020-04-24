@@ -19,7 +19,7 @@
     nics:
       - name: nic1
         interface: virtio
-        profile_name: ovirtmgmt
+        profile_name: "{{ vm.vnic_profile }}"
     # next_run: yes
     cloud_init_persist: yes
     cloud_init:
@@ -35,5 +35,5 @@
         nic_netmask: "{{ vm.network[0].ipv4.netmask }}"
         nic_gateway: "{{ vm.network[0].ipv4.gw }}"
         nic_on_boot: yes
-    state: present
     wait: yes
+    state: present

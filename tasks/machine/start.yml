@@ -3,6 +3,6 @@
   delegate_to: localhost
   ovirt_vm:
     auth: "{{ ovirt_auth }}"
-    name: "{{ inventory_hostname }}"
+    name: "{{ vm.name }}"
     wait: yes
     state: running

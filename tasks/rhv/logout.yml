@@ -1,6 +1,7 @@
 ---
 - name: Logout of RHV
   delegate_to: localhost
+  # delegate_facts: yes
   run_once: true
   ovirt_auth:
     ovirt_auth: "{{ ovirt_auth }}"

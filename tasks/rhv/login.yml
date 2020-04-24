@@ -1,6 +1,7 @@
 ---
 - name: Login to RHV
   delegate_to: localhost
+  # delegate_facts: yes
   run_once: true
   ovirt_auth:
     hostname: "{{ rhv_engine }}"
@@ -10,4 +11,4 @@
   tags:
     - always
     - login
-  when: ovirt_auth is not defined
+  # when: ovirt_auth is not defined

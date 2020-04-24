@@ -1,17 +1,17 @@
 ---
-- name: Check that rhv_image_path exists
-  delegate_to: localhost
-  run_once: yes
-  stat:
-    path: "{{ rhv_image_path }}"
-  register: stat_result
+# - name: Check that rhv_image_path exists
+#   delegate_to: localhost
+#   run_once: yes
+#   stat:
+#     path: "{{ rhv_image_path }}"
+#   register: stat_result
 
-- name: Fail fast if image doesn't exists
-  delegate_to: localhost
-  run_once: yes
-  fail:
-    msg: "Image doesn't Exist"
-  when: not stat_result.stat.exists
+# - name: Fail fast if image doesn't exists
+#   delegate_to: localhost
+#   run_once: yes
+#   fail:
+#     msg: "Image doesn't Exist"
+#   when: not stat_result.stat.exists
 
 - name: Upload RHEL 7 KVM Image
   delegate_to: localhost

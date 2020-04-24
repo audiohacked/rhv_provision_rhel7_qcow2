@@ -1,9 +1,18 @@
 ---
-# defaults file for rhv_rhel7_qcow2_provision
+### defaults file for rhv_provision_rhel7_qcow2
+### RHV Data Center Name
 datacenter: Default
+
+### RHV Cluster Name
 cluster: Default
+
+### RHV Storage Domain
 storage_domain: CHANGEME
+
+### VM Template Name from which to build the new VM
 vm_template: Blank
+
+### VM Build Parameters
 # vm:
 #   type: server
 #   os: rhel_7x64
@@ -19,8 +28,8 @@ vm_template: Blank
 #     - conn_name: eth0
 #       ifname: eth0
 #       ipv4:
-#         method: static 
-#         address: 10.100.0.21
+#         method: static
+#         address: 172.16.0.21
 #         netmask: 255.255.0.0
 #         gw: 10.100.0.1
 #         dns:
@@ -30,11 +39,5 @@ vm_template: Blank
 #         dns_search:
 #           - hkn.lab
 
-rhv_rhel7_qcow2_network_packages:
-  - NetworkManager-glib
-  - nm-connection-editor
-  - libsemanage-python
-  - policycoreutils-python
-
-rhv_rhel7_qcow2_image_path: /home/snelson/Documents/DiskImages/rhel-server-7.7-x86_64-kvm.qcow2
-
+### QCOW2 Image Path for Upload
+rhv_image_path: /home/snelson/Documents/DiskImages/VM/KVM/rhel-server-7.7-x86_64-kvm.qcow2
